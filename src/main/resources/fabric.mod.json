@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "customclientdns",
+  "version": "${version}",
+  "name": "CustomClientDNS",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Ghost-chu/CustomClientDNSstomClientDNS"
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/customclientdns/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.ghostchu.mods.customclientdns.client.CustomClientDNSClient"
+    ],
+    "main": [
+      "com.ghostchu.mods.customclientdns.CustomClientDNS"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "mixins": [
+    "customclientdns.mixins.json"
+  ]
+}
