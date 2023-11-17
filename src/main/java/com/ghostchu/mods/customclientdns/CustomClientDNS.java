@@ -34,15 +34,28 @@ public class CustomClientDNS implements ModInitializer {
             throw new RuntimeException(e); // Crash the game if files failed to create to avoid silent failure
         }
         setupDNSResolver(DNS_CONFIG);
-        try {
-            LOGGER.info("DNS lookup for www.baidu.com: " + new DNSLookupHelper("www.baidu.com"));
-            LOGGER.info("DNS lookup for github.com: " + new DNSLookupHelper("github.com"));
-            LOGGER.info("DNS lookup for gbcraft.org: " + new DNSLookupHelper("gbcraft.org"));
-            LOGGER.info("DNS lookup for zth.ria.red: " + new DNSLookupHelper("zth.ria.red"));
-            LOGGER.info("DNS lookup for play.barbatos.club: " + new DNSLookupHelper("play.barabtos.club"));
-        } catch (UnknownHostException e) {
-            LOGGER.info(e.getClass().getName() + ": " + e.getMessage());
-        }
+        selfTest();
+    }
+
+    private void selfTest() {
+        List<String> testList = List.of(
+                "www.baidu.com",
+                "www.google.com",
+                "www.mcbbs.net",
+                "www.imdodo.com",
+                "www.qq.com",
+                "weibo.com",
+                "github.com",
+                "gbcraft.org",
+                "zth.ria.red"
+        );
+        testList.parallelStream().forEach(s -> {
+            try {
+                LOGGER.info("[Self-Test] DNS lookup for {}: {} ", s, new DNSLookupHelper(s));
+            } catch (UnknownHostException e) {
+                LOGGER.info(e.getClass().getName() + ": " + e.getMessage());
+            }
+        });
     }
 
     private void setupDNSResolver(DNSConfig dnsConfig) {
@@ -68,7 +81,7 @@ public class CustomClientDNS implements ModInitializer {
             }
         }
         this.resolvers = resolvers;
-        Lookup.setPacketLogger((prefix, local, remote, data) -> LOGGER.info("SocketAddress-Local: {}, SocketAddress-Remote: {}, Data: {}", local,remote, new String(data, StandardCharsets.UTF_8)));
+        Lookup.setPacketLogger((prefix, local, remote, data) -> LOGGER.debug("SocketAddress-Local: {}, SocketAddress-Remote: {}, Data: {}", local, remote, new String(data, StandardCharsets.UTF_8)));
         Lookup.setDefaultResolver(new ExtendedResolver(resolvers));
     }
 
