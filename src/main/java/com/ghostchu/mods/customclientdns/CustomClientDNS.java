@@ -20,7 +20,6 @@ public class CustomClientDNS implements ModInitializer {
     public DNSConfig DNS_CONFIG;
     public static CustomClientDNS INSTANCE;
     private static final Logger LOGGER = LoggerFactory.getLogger("CustomClientDNS");
-    private List<Resolver> resolvers;
 
     /**
      * Runs the mod initializer.
@@ -80,7 +79,6 @@ public class CustomClientDNS implements ModInitializer {
                 LOGGER.error("Failed to add default resolver", e);
             }
         }
-        this.resolvers = resolvers;
         Lookup.setPacketLogger((prefix, local, remote, data) -> LOGGER.debug("SocketAddress-Local: {}, SocketAddress-Remote: {}, Data: {}", local, remote, new String(data, StandardCharsets.UTF_8)));
         Lookup.setDefaultResolver(new ExtendedResolver(resolvers));
     }
