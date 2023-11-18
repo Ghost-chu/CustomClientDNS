@@ -9,6 +9,7 @@ import org.xbill.DNS.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 /**
  * @author tekgator <a href="https://gist.github.com/tekgator/fd39017561b506139962">...</a>
@@ -35,7 +36,20 @@ public class DNSLookupHelper {
             UnknownHostException {
         // check whether the port is encoded within the hostname string
         String[] parts = hostName.split(":");
-
+        if (parts.length > 2) {
+            StringJoiner partsHosts = new StringJoiner(":");
+            for (int i = 0; i < parts.length; i++) {
+                partsHosts.add(parts[i]);
+                if (i + 1 >= parts.length - 1) {
+                    break;
+                }
+            }
+            String partsPort = parts[parts.length - 1];
+            String partsHost = partsHosts.toString();
+            parts = new String[2];
+            parts[0] = partsHost;
+            parts[1] = partsPort;
+        }
         if (parts.length > 1) {
             this.hostName = parts[0];
             try {
@@ -69,7 +83,7 @@ public class DNSLookupHelper {
             // hostname provided is an actual hostname, resolve IP address
             try {
                 this.ipAddress = ((ARecord) lookupRecord(this.hostName, Type.A)).getAddress().getHostAddress();
-            }catch (UnknownHostException e){
+            } catch (UnknownHostException e) {
                 this.ipAddress = ((AAAARecord) lookupRecord(this.hostName, Type.AAAA)).getAddress().getHostAddress();
             }
         }
@@ -98,8 +112,8 @@ public class DNSLookupHelper {
         result = lookup.getResult();
 
         if (result == Lookup.SUCCESSFUL) {
-            LOG.info("Successfully got DNS record of type '{}' for hostname '{}'", type, hostName);
             record = lookup.getAnswers()[0];
+            LOG.info("Successfully got DNS record of type '{}' for hostname '{}': '{}'", Type.string(type), hostName, record);
         } else {
             LOG.debug("Failed to get DNS record of type '{}' for hostname '{}'", type, hostName);
 

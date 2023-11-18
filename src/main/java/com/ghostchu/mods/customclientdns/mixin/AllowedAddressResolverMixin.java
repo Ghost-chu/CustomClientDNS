@@ -20,7 +20,7 @@ public class AllowedAddressResolverMixin {
         AddressResolver addressResolver = address1 -> {
             try {
                 DNSLookupHelper helper = new DNSLookupHelper(address1.getAddress(), address1.getPort());
-                return Optional.of(Address.create(InetSocketAddress.createUnresolved(helper.getIpAddress(), helper.getPort())));
+                return Optional.of(Address.create(new InetSocketAddress(helper.getIpAddress(), helper.getPort())));
             } catch (UnknownHostException e) {
                 return Optional.empty();
             }

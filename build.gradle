@@ -24,6 +24,7 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     include implementation ('dnsjava:dnsjava:3.5.2')
+    include implementation ('commons-validator:commons-validator:1.7')
     include implementation("org.bspfsystems:yamlconfiguration:1.4.0")
     // https://mvnrepository.com/artifact/dnsjava/dnsjava
 
