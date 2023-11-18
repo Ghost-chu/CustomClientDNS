@@ -38,15 +38,12 @@ public class CustomClientDNS implements ModInitializer {
 
     private void selfTest() {
         List<String> testList = List.of(
-                "www.baidu.com",
-                "www.google.com",
-                "www.mcbbs.net",
-                "www.imdodo.com",
-                "www.qq.com",
-                "weibo.com",
                 "github.com",
-                "gbcraft.org",
-                "zth.ria.red"
+                "hypixel.net",
+                "google.com",
+                "cloudflare.com",
+                "minecrafr.net",
+                "mojang.com"
         );
         testList.parallelStream().forEach(s -> {
             try {
