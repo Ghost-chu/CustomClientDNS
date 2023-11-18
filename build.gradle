@@ -1,9 +1,10 @@
 plugins {
     id 'fabric-loom' version '1.2-SNAPSHOT'
     id 'maven-publish'
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+//    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
+archives_base_name = "${project.archives_base_name}-mc${project.minecraft_version}"
 version = project.mod_version
 group = project.maven_group
 
@@ -31,19 +32,19 @@ dependencies {
 
 }
 
-shadowJar {
-    configurations = [project.configurations.compileClasspath]
-    archiveClassifier.set("shadow")
-    dependencies {
-        include(dependency('dnsjava:dnsjava'))
-        include(dependency('commons-validator:commons-validator'))
-        include(dependency('org.bspfsystems:yamlconfiguration'))
-    }
-    relocate "org.xbill", "com.ghostchu.mods.customclientdns.shaded.org.xbill"
-    relocate "org.apache", "com.ghostchu.mods.customclientdns.shaded.org.apache"
-    relocate "org.yaml.snakeyaml", "com.ghostchu.mods.customclientdns.shaded.org.yaml.snakeyaml"
-    relocate "org.bspfsystems.yamlconfiguration", "com.ghostchu.mods.customclientdns.shaded.org.bspfsystems.yamlconfiguration"
-}
+//shadowJar {
+//    configurations = [project.configurations.compileClasspath]
+//    archiveClassifier.set("shadow")
+//    dependencies {
+//        include(dependency('dnsjava:dnsjava'))
+//        include(dependency('commons-validator:commons-validator'))
+//        include(dependency('org.bspfsystems:yamlconfiguration'))
+//    }
+//    relocate "org.xbill", "com.ghostchu.mods.customclientdns.shaded.org.xbill"
+//    relocate "org.apache", "com.ghostchu.mods.customclientdns.shaded.org.apache"
+//    relocate "org.yaml.snakeyaml", "com.ghostchu.mods.customclientdns.shaded.org.yaml.snakeyaml"
+//    relocate "org.bspfsystems.yamlconfiguration", "com.ghostchu.mods.customclientdns.shaded.org.bspfsystems.yamlconfiguration"
+//}
 
 processResources {
     inputs.property "version", project.version
