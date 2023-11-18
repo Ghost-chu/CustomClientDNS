@@ -4,11 +4,19 @@
   "version": "${version}",
   "name": "CustomClientDNS",
   "description": "",
-  "authors": [],
+  "authors": [
+    {
+      "name": "@ghost-chu",
+      "contact": {
+        "email": "private@no-thankyou.com",
+        "homepage": "https://github.com/Ghost-chu"
+      }
+    }
+  ],
   "contact": {
-    "repo": "https://github.com/Ghost-chu/CustomClientDNSstomClientDNS"
+    "repo": "https://github.com/Ghost-chu/CustomClientDNSS"
   },
-  "license": "GPL-3.0",
+  "license": "MIT",
   "icon": "assets/customclientdns/icon.png",
   "environment": "*",
   "entrypoints": {
