@@ -30,6 +30,13 @@ customized-dns-resolvers:
 - 8.8.8.8
 ```
 
+## Screenshots
+![3](https://github.com/Ghost-chu/CustomClientDNS/assets/30802565/4956d4f4-d28a-4c43-9025-27f76367a6ea)
+![2](https://github.com/Ghost-chu/CustomClientDNS/assets/30802565/dc34801b-cb75-494e-969f-5fb82bb9e4bb)
+![1](https://github.com/Ghost-chu/CustomClientDNS/assets/30802565/0572e62a-f4c5-47b2-9ef3-ad4ddd32ce48)
+
+
+
 ## Credit
 
 DNSLookupHelper.java is a modified class from [tekgator](https://gist.github.com/tekgator/fd39017561b506139962), added AAAA support.
