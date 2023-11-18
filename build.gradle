@@ -33,12 +33,14 @@ dependencies {
 
 shadowJar {
     configurations = [project.configurations.compileClasspath]
-    archiveClassifier.set("dev-shadow")
+    archiveClassifier.set("shadow")
     dependencies {
         include(dependency('dnsjava:dnsjava'))
+        include(dependency('commons-validator:commons-validator'))
         include(dependency('org.bspfsystems:yamlconfiguration'))
     }
-    relocate "dnsjava:dnsjava", "com.ghostchu.mods.customclientdns.shaded.dnsjava:dnsjava"
+    relocate "org.xbill", "com.ghostchu.mods.customclientdns.shaded.org.xbill"
+    relocate "org.apache", "com.ghostchu.mods.customclientdns.shaded.org.apache"
     relocate "org.yaml.snakeyaml", "com.ghostchu.mods.customclientdns.shaded.org.yaml.snakeyaml"
     relocate "org.bspfsystems.yamlconfiguration", "com.ghostchu.mods.customclientdns.shaded.org.bspfsystems.yamlconfiguration"
 }
