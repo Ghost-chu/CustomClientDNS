@@ -67,7 +67,11 @@ public class DNSLookupHelper {
             this.ipAddress = this.hostName;
         } else {
             // hostname provided is an actual hostname, resolve IP address
-            this.ipAddress = ((ARecord) lookupRecord(this.hostName, Type.A)).getAddress().getHostAddress();
+            try {
+                this.ipAddress = ((ARecord) lookupRecord(this.hostName, Type.A)).getAddress().getHostAddress();
+            }catch (UnknownHostException e){
+                this.ipAddress = ((AAAARecord) lookupRecord(this.hostName, Type.AAAA)).getAddress().getHostAddress();
+            }
         }
 
         if (this.port == 0) {
