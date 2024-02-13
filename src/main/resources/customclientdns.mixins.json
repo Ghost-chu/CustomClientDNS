@@ -6,7 +6,8 @@
   "mixins": [],
   "client": [
     "AllowedAddressResolverAccessor",
-    "AllowedAddressResolverMixin"
+    "AllowedAddressResolverMixin",
+    "ClientConnectionMixin"
   ],
   "server": [],
   "injectors": {
